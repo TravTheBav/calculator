@@ -1,0 +1,7 @@
+#display {
+    height: 40px;
+    width: 80px;
+    background-color: gainsboro;
+    border-style: solid;
+    margin-top: 10px;
+}

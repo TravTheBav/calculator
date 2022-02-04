@@ -20,9 +20,9 @@ function operate(operator, num1, num2) {
             return addNums(num1, num2);
         case '-':
             return subtractNums(num1, num2);
-        case '*':
+        case 'x':
             return multiplyNums(num1, num2);
-        case '/':
+        case '÷':
             return divideNums(num1, num2);
     }
 }
