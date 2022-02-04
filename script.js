@@ -26,3 +26,16 @@ function operate(operator, num1, num2) {
             return divideNums(num1, num2);
     }
 }
+
+// the display and 'displayValue' are updated when each num button is clicked
+function initNumButtonEventListeners() {
+    const buttons = document.querySelectorAll('button.num');
+    buttons.forEach(button => button.addEventListener('click', () => {
+        const display = document.querySelector('#display');
+        display.textContent += button.textContent;
+        displayValue += button.textContent;
+    }));
+}
+
+initNumButtonEventListeners();
+let displayValue = ""
