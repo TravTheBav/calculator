@@ -1,15 +1,28 @@
-function addNums(a, b) {
-    return a + b;
+function addNums(num1, num2) {
+    return num1 + num2;
 }
 
-function subtractNums(a, b) {
-    return a - b;
+function subtractNums(num1, num2) {
+    return num1 - num2;
 }
 
-function multiplyNums(a, b) {
-    return a * b;
+function multiplyNums(num1, num2) {
+    return num1 * num2;
 }
 
-function divideNums(a, b) {
-    return a / b;
+function divideNums(num1, num2) {
+    return num1 / num2;
+}
+
+function operate(operator, num1, num2) {
+    switch(operator) {
+        case '+':
+            return addNums(num1, num2);
+        case '-':
+            return subtractNums(num1, num2);
+        case '*':
+            return multiplyNums(num1, num2);
+        case '/':
+            return divideNums(num1, num2);
+    }
 }
