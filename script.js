@@ -67,11 +67,15 @@ function initClearButtonEventListener() {
     })
 }
 
+function initButtonEventListeners() {
+    initNumButtonEventListeners();
+    initOperatorButtonEventListeners();
+    initEqualsButtonEventListener();
+    initClearButtonEventListener();
+}
+
 const display = document.querySelector('#display');
 display.textContent = "";
-initNumButtonEventListeners();
-initOperatorButtonEventListeners();
-initEqualsButtonEventListener();
-initClearButtonEventListener();
+initButtonEventListeners();
 let storedValue = null;
 let lastOperatorEntered = null;
