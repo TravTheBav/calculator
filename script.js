@@ -53,8 +53,17 @@ function initEqualsButtonEventListener() {
         if (storedValue && lastOperatorEntered) {
             display.textContent = operate(lastOperatorEntered, +storedValue, +display.textContent);
             storedValue = null;
-            lastOperatorEntered = null;            
+            lastOperatorEntered = null;          
         }
+    })
+}
+
+function initClearButtonEventListener() {
+    const button = document.querySelector('button.clear');
+    button.addEventListener('click', () => {
+        display.textContent = "";
+        storedValue = null;
+        lastOperatorEntered = null;
     })
 }
 
@@ -63,5 +72,6 @@ display.textContent = "";
 initNumButtonEventListeners();
 initOperatorButtonEventListeners();
 initEqualsButtonEventListener();
+initClearButtonEventListener();
 let storedValue = null;
 let lastOperatorEntered = null;
