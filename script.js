@@ -37,5 +37,20 @@ function initNumButtonEventListeners() {
     }));
 }
 
+// current display value is moved to a stored value and display is cleared when an operator button is clicked 
+function initOperatorButtonEventListeners() {
+    const buttons = document.querySelectorAll('button.operator');
+    buttons.forEach(button => button.addEventListener('click', () => {
+        const display = document.querySelector('#display');
+        lastOperatorEntered = button.textContent;
+        storedValue = displayValue.textContent;
+        display.textContent = "";
+        displayValue = "";
+    }));
+}
+
 initNumButtonEventListeners();
-let displayValue = ""
+initOperatorButtonEventListeners();
+let displayValue = "";
+let storedValue = null;
+let lastOperatorEntered = null;
