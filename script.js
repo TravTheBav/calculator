@@ -39,8 +39,12 @@ function initNumButtonEventListeners() {
 function initOperatorButtonEventListeners() {
     const buttons = document.querySelectorAll('button.operator');
     buttons.forEach(button => button.addEventListener('click', () => {
-        lastOperatorEntered = button.textContent;
-        storedValue = display.textContent;
+        if (storedValue) {  // update the stored value first if there already is one
+            storedValue = operate(lastOperatorEntered, +storedValue, +display.textContent);
+        }   else {            
+            storedValue = display.textContent;
+        }
+        lastOperatorEntered = button.textContent;        
         display.textContent = "";
     }));
 }
