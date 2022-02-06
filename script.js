@@ -27,12 +27,11 @@ function operate(operator, num1, num2) {
     }
 }
 
-// the display and 'displayValue' are updated when each num button is clicked
+// the display is updated when each num button is clicked
 function initNumButtonEventListeners() {
     const buttons = document.querySelectorAll('button.num');
     buttons.forEach(button => button.addEventListener('click', () => {
         display.textContent += button.textContent;
-        displayValue += button.textContent;
     }));
 }
 
@@ -43,7 +42,6 @@ function initOperatorButtonEventListeners() {
         lastOperatorEntered = button.textContent;
         storedValue = display.textContent;
         display.textContent = "";
-        displayValue = "";
     }));
 }
 
@@ -53,8 +51,7 @@ function initEqualsButtonEventListener() {
     const button = document.querySelector('button.equals');
     button.addEventListener('click', () => {
         if (storedValue && lastOperatorEntered) {
-            display.textContent = operate(lastOperatorEntered, +displayValue, +storedValue);
-            displayValue = display.textContent;
+            display.textContent = operate(lastOperatorEntered, +storedValue, +display.textContent);
             storedValue = null;
             lastOperatorEntered = null;            
         }
@@ -62,9 +59,9 @@ function initEqualsButtonEventListener() {
 }
 
 const display = document.querySelector('#display');
+display.textContent = "";
 initNumButtonEventListeners();
 initOperatorButtonEventListeners();
 initEqualsButtonEventListener();
-let displayValue = "";
 let storedValue = null;
 let lastOperatorEntered = null;
