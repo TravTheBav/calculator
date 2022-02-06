@@ -31,26 +31,40 @@ function operate(operator, num1, num2) {
 function initNumButtonEventListeners() {
     const buttons = document.querySelectorAll('button.num');
     buttons.forEach(button => button.addEventListener('click', () => {
-        const display = document.querySelector('#display');
         display.textContent += button.textContent;
         displayValue += button.textContent;
     }));
 }
 
-// current display value is moved to a stored value and display is cleared when an operator button is clicked 
+// current display value is moved to a storedValue and display is cleared when an operator button is clicked 
 function initOperatorButtonEventListeners() {
     const buttons = document.querySelectorAll('button.operator');
     buttons.forEach(button => button.addEventListener('click', () => {
-        const display = document.querySelector('#display');
         lastOperatorEntered = button.textContent;
-        storedValue = displayValue.textContent;
+        storedValue = display.textContent;
         display.textContent = "";
         displayValue = "";
     }));
 }
 
+// does the math operation if there is a storedValue and a lastOperatorEntered
+// displays the result and then resets storedValue and lastOperatorEntered to null and displayValue to the current result
+function initEqualsButtonEventListener() {
+    const button = document.querySelector('button.equals');
+    button.addEventListener('click', () => {
+        if (storedValue && lastOperatorEntered) {
+            display.textContent = operate(lastOperatorEntered, +displayValue, +storedValue);
+            displayValue = display.textContent;
+            storedValue = null;
+            lastOperatorEntered = null;            
+        }
+    })
+}
+
+const display = document.querySelector('#display');
 initNumButtonEventListeners();
 initOperatorButtonEventListeners();
+initEqualsButtonEventListener();
 let displayValue = "";
 let storedValue = null;
 let lastOperatorEntered = null;
