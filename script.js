@@ -92,8 +92,20 @@ function initClearButtonEventListener() {
 function initDecimalButtonEventListener() {
     const button = document.querySelector('button.decimal');
     button.addEventListener('click', () => {
-        if (!display.textContent.includes(".")) {
-            display.textContent += ".";
+        if (noError()) {
+            if (!display.textContent.includes(".")) {
+                display.textContent += ".";
+            }
+        }        
+    })
+}
+
+function initBackspaceButtonEventListener() {
+    const button = document.querySelector('button.backspace');
+    button.addEventListener('click', () => {
+        if (noError()) {
+            endIndex = display.textContent.length - 1;
+            display.textContent = display.textContent.slice(0, endIndex);
         }
     })
 }
@@ -111,6 +123,7 @@ function initButtonEventListeners() {
     initEqualsButtonEventListener();
     initClearButtonEventListener();
     initDecimalButtonEventListener();
+    initBackspaceButtonEventListener();
 }
 
 const display = document.querySelector('#display');
