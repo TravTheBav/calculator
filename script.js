@@ -89,6 +89,15 @@ function initClearButtonEventListener() {
     })
 }
 
+function initDecimalButtonEventListener() {
+    const button = document.querySelector('button.decimal');
+    button.addEventListener('click', () => {
+        if (!display.textContent.includes(".")) {
+            display.textContent += ".";
+        }
+    })
+}
+
 function noError() {
     if (display.textContent == "ERROR: DIVIDE BY 0") {
         return false;
@@ -101,6 +110,7 @@ function initButtonEventListeners() {
     initOperatorButtonEventListeners();
     initEqualsButtonEventListener();
     initClearButtonEventListener();
+    initDecimalButtonEventListener();
 }
 
 const display = document.querySelector('#display');
