@@ -15,16 +15,22 @@ function divideNums(num1, num2) {
 }
 
 function operate(operator, num1, num2) {
+    let val;
     switch(operator) {
         case '+':
-            return addNums(num1, num2);
+            val = addNums(num1, num2);
+            break;
         case '-':
-            return subtractNums(num1, num2);
+            val = subtractNums(num1, num2);
+            break;
         case 'x':
-            return multiplyNums(num1, num2);
+            val = multiplyNums(num1, num2);
+            break;
         case '÷':
-            return divideNums(num1, num2);
+            val = divideNums(num1, num2);
+            break;
     }
+    return val.toFixed(4);
 }
 
 // the display is updated when each num button is clicked
