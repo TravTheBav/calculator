@@ -65,47 +65,76 @@ function initOperatorButtonEventListeners() {
     }));
 }
 
+function equalPressed() {
+    if (noError()) {
+        if (storedValue && lastOperatorEntered) {
+            display.textContent = operate(lastOperatorEntered, +storedValue, +display.textContent);
+            storedValue = null;
+            lastOperatorEntered = null;          
+        }
+    }   
+}
+
 // does the math operation if there is a storedValue and a lastOperatorEntered
 // displays the result and then resets storedValue and lastOperatorEntered to null and displayValue to the current result
 function initEqualsButtonEventListener() {
     const button = document.querySelector('button.equals');
-    button.addEventListener('click', () => {
-        if (noError()) {
-            if (storedValue && lastOperatorEntered) {
-                display.textContent = operate(lastOperatorEntered, +storedValue, +display.textContent);
-                storedValue = null;
-                lastOperatorEntered = null;          
-            }
-        }        
-    })
+    button.addEventListener('click', equalPressed)
+}
+
+function clearPressed() {
+    display.textContent = "";
+    storedValue = null;
+    lastOperatorEntered = null;
 }
 
 function initClearButtonEventListener() {
     const button = document.querySelector('button.clear');
-    button.addEventListener('click', () => {
-        display.textContent = "";
-        storedValue = null;
-        lastOperatorEntered = null;
-    })
+    button.addEventListener('click', clearPressed);
+}
+
+function decimalPressed() {
+    if (noError()) {
+        if (!display.textContent.includes(".")) {
+            display.textContent += ".";
+        }
+    }
 }
 
 function initDecimalButtonEventListener() {
     const button = document.querySelector('button.decimal');
-    button.addEventListener('click', () => {
-        if (noError()) {
-            if (!display.textContent.includes(".")) {
-                display.textContent += ".";
-            }
-        }        
-    })
+    button.addEventListener('click', decimalPressed);
+}
+
+function backspacePressed() {
+    if (noError()) {
+        endIndex = display.textContent.length - 1;
+        display.textContent = display.textContent.slice(0, endIndex);
+    }
 }
 
 function initBackspaceButtonEventListener() {
     const button = document.querySelector('button.backspace');
-    button.addEventListener('click', () => {
-        if (noError()) {
-            endIndex = display.textContent.length - 1;
-            display.textContent = display.textContent.slice(0, endIndex);
+    button.addEventListener('click', backspacePressed);  
+}
+
+function initKeyboardEventListeners() {
+    document.addEventListener('keydown', e => {
+        switch (e.key) {
+            case 'Backspace':
+                backspacePressed();
+                break;
+            case '.':
+                decimalPressed();
+                break;
+            case 'c':
+                clearPressed();
+                break;
+            case '=':
+                equalPressed();
+                break;
+            
+
         }
     })
 }
@@ -129,5 +158,6 @@ function initButtonEventListeners() {
 const display = document.querySelector('#display');
 display.textContent = "";
 initButtonEventListeners();
+initKeyboardEventListeners();
 let storedValue = null;
 let lastOperatorEntered = null;
