@@ -1,3 +1,4 @@
+// math functions
 function addNums(num1, num2) {
     return num1 + num2;
 }
@@ -16,7 +17,9 @@ function divideNums(num1, num2) {
     }
     return num1 / num2;
 }
+//
 
+// calls a math function for a given operator and set of 2 nums
 function operate(operator, num1, num2) {
     let val;
     switch(operator) {
@@ -39,19 +42,24 @@ function operate(operator, num1, num2) {
     return val.toFixed(4);
 }
 
-// the display is updated when each num button is clicked
-function initNumButtonEventListeners() {
-    const buttons = document.querySelectorAll('button.num');
-    buttons.forEach(button => button.addEventListener('click', () => {
-        if (noError()) {
-            display.textContent += button.textContent;
-        }
-    }));
+// returns a bool to determine whether or not an error is displayed
+function noError() {
+    if (display.textContent == "ERROR: DIVIDE BY 0") {
+        return false;
+    }
+    return true;
+}
+
+// helper functions for the button and keyboard event listeners
+function numPressed(num) {
+    if (noError()) {
+        display.textContent += num;
+    }
 }
 
 function operatorPressed(operator) {
     if (noError()) {
-        if (storedValue) {  // update the stored value first if there already is one
+        if (storedValue) {
             storedValue = operate(lastOperatorEntered, +storedValue, +display.textContent);
         }   else {            
             storedValue = display.textContent;
@@ -59,14 +67,6 @@ function operatorPressed(operator) {
         lastOperatorEntered = operator;        
         display.textContent = "";
     }
-}
-
-// current display value is moved to a storedValue and display is cleared when an operator button is clicked 
-function initOperatorButtonEventListeners() {
-    const buttons = document.querySelectorAll('button.operator');
-    buttons.forEach(button => button.addEventListener('click', () => {
-        operatorPressed(button.textContent);
-    }));
 }
 
 function equalPressed() {
@@ -79,24 +79,6 @@ function equalPressed() {
     }   
 }
 
-// does the math operation if there is a storedValue and a lastOperatorEntered
-// displays the result and then resets storedValue and lastOperatorEntered to null and displayValue to the current result
-function initEqualsButtonEventListener() {
-    const button = document.querySelector('button.equals');
-    button.addEventListener('click', equalPressed)
-}
-
-function clearPressed() {
-    display.textContent = "";
-    storedValue = null;
-    lastOperatorEntered = null;
-}
-
-function initClearButtonEventListener() {
-    const button = document.querySelector('button.clear');
-    button.addEventListener('click', clearPressed);
-}
-
 function decimalPressed() {
     if (noError()) {
         if (!display.textContent.includes(".")) {
@@ -105,9 +87,10 @@ function decimalPressed() {
     }
 }
 
-function initDecimalButtonEventListener() {
-    const button = document.querySelector('button.decimal');
-    button.addEventListener('click', decimalPressed);
+function clearPressed() {
+    display.textContent = "";
+    storedValue = null;
+    lastOperatorEntered = null;
 }
 
 function backspacePressed() {
@@ -116,12 +99,55 @@ function backspacePressed() {
         display.textContent = display.textContent.slice(0, endIndex);
     }
 }
+//
+
+// event listener initializers for all buttons
+function initNumButtonEventListeners() {
+    const buttons = document.querySelectorAll('button.num');
+    buttons.forEach(button => button.addEventListener('click', () => {
+        numPressed(button.textContent);
+    }));
+}
+
+function initOperatorButtonEventListeners() {
+    const buttons = document.querySelectorAll('button.operator');
+    buttons.forEach(button => button.addEventListener('click', () => {
+        operatorPressed(button.textContent);
+    }));
+}
+
+function initEqualsButtonEventListener() {
+    const button = document.querySelector('button.equals');
+    button.addEventListener('click', equalPressed)
+}
+
+function initDecimalButtonEventListener() {
+    const button = document.querySelector('button.decimal');
+    button.addEventListener('click', decimalPressed);
+}
+
+function initClearButtonEventListener() {
+    const button = document.querySelector('button.clear');
+    button.addEventListener('click', clearPressed);
+}
 
 function initBackspaceButtonEventListener() {
     const button = document.querySelector('button.backspace');
     button.addEventListener('click', backspacePressed);  
 }
+//
 
+// calls all button event initializers for clarity
+function initButtonEventListeners() {
+    initNumButtonEventListeners();
+    initOperatorButtonEventListeners();
+    initEqualsButtonEventListener();
+    initClearButtonEventListener();
+    initDecimalButtonEventListener();
+    initBackspaceButtonEventListener();
+}
+
+// event listener initializer for all possible keys
 function initKeyboardEventListeners() {
     document.addEventListener('keydown', e => {
         switch (e.key) {
@@ -153,26 +179,10 @@ function initKeyboardEventListeners() {
             case '8':
             case '9':
             case '0':
-            
-
+                numPressed(e.key);
+                break;
         }
     })
-}
-
-function noError() {
-    if (display.textContent == "ERROR: DIVIDE BY 0") {
-        return false;
-    }
-    return true;
-}
-
-function initButtonEventListeners() {
-    initNumButtonEventListeners();
-    initOperatorButtonEventListeners();
-    initEqualsButtonEventListener();
-    initClearButtonEventListener();
-    initDecimalButtonEventListener();
-    initBackspaceButtonEventListener();
 }
 
 const display = document.querySelector('#display');
