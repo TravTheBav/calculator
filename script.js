@@ -160,6 +160,7 @@ function initKeyboardEventListeners() {
             case 'c':
                 clearPressed();
                 break;
+            case 'Enter':
             case '=':
                 equalPressed();
                 break;
