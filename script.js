@@ -26,10 +26,10 @@ function operate(operator, num1, num2) {
         case '-':
             val = subtractNums(num1, num2);
             break;
-        case 'x':
+        case '*':
             val = multiplyNums(num1, num2);
             break;
-        case '÷':
+        case '/':
             val = divideNums(num1, num2);
             break;
     }
@@ -49,19 +49,23 @@ function initNumButtonEventListeners() {
     }));
 }
 
+function operatorPressed(operator) {
+    if (noError()) {
+        if (storedValue) {  // update the stored value first if there already is one
+            storedValue = operate(lastOperatorEntered, +storedValue, +display.textContent);
+        }   else {            
+            storedValue = display.textContent;
+        }
+        lastOperatorEntered = operator;        
+        display.textContent = "";
+    }
+}
+
 // current display value is moved to a storedValue and display is cleared when an operator button is clicked 
 function initOperatorButtonEventListeners() {
     const buttons = document.querySelectorAll('button.operator');
     buttons.forEach(button => button.addEventListener('click', () => {
-        if (noError()) {
-            if (storedValue) {  // update the stored value first if there already is one
-                storedValue = operate(lastOperatorEntered, +storedValue, +display.textContent);
-            }   else {            
-                storedValue = display.textContent;
-            }
-            lastOperatorEntered = button.textContent;        
-            display.textContent = "";
-        }        
+        operatorPressed(button.textContent);
     }));
 }
 
@@ -133,6 +137,22 @@ function initKeyboardEventListeners() {
             case '=':
                 equalPressed();
                 break;
+            case '+': 
+            case '-': 
+            case '*': 
+            case '/':
+                operatorPressed(e.key);
+                break;
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+            case '0':
             
 
         }
