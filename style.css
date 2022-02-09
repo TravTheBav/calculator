@@ -2,12 +2,33 @@
     outline: none;
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #calculator {
+    height: 75%;
+    width: 50%;
     display: flex;
     flex-direction: column;
 }
 
+#display {
+    flex: 1;
+    background-color: gainsboro;
+    border-style: solid;
+    margin-top: 10px;
+}
+
 #buttons {
+    flex: 5;
     display: flex;
     flex-direction: column;
 }
@@ -19,12 +40,4 @@
 #row-bottom.left-side {
     display: flex;
     flex-direction: column;
-}
-
-#display {
-    height: 40px;
-    width: 80px;
-    background-color: gainsboro;
-    border-style: solid;
-    margin-top: 10px;
 }
