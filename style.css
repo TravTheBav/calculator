@@ -7,7 +7,19 @@
     flex-direction: column;
 }
 
+#buttons {
+    display: flex;
+    flex-direction: column;
+}
 
+#row-bottom {
+    display: flex;
+}
+
+#row-bottom.left-side {
+    display: flex;
+    flex-direction: column;
+}
 
 #display {
     height: 40px;
