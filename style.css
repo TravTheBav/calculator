@@ -2,6 +2,13 @@
     outline: none;
 }
 
+#calculator {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 #display {
     height: 40px;
     width: 80px;

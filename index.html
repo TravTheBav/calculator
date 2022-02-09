@@ -9,25 +9,44 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <button class="num">1</button>
-        <button class="num">2</button>
-        <button class="num">3</button>
-        <button class="num">4</button>
-        <button class="num">5</button>
-        <button class="num">6</button>
-        <button class="num">7</button>
-        <button class="num">8</button>
-        <button class="num">9</button>
-        <button class="num">0</button>
-        <button class="operator">+</button>
-        <button class="operator">-</button>
-        <button class="operator">*</button>
-        <button class="operator">/</button> <!-- shift+ctrl u00f7 -->
-        <button class="equals">=</button>
-        <button class="decimal">.</button>
-        <button class="clear">C</button>
-        <button class="backspace">Backspace</button>
-        <div id='display'></div>
-
+        <div id="calculator">
+            <div id='display'></div>
+            <div id='buttons'>
+                <div id="row">
+                    <button class="clear">C</button>
+                    <button class="operator">/</button>
+                    <button class="operator">*</button>
+                    <button class="backspace">Backspace</button>
+                </div>
+                <div id="row">
+                    <button class="num">7</button>
+                    <button class="num">8</button>
+                    <button class="num">9</button>
+                    <button class="equals">=</button>
+                </div>
+                <div id="row">
+                    <button class="num">4</button>
+                    <button class="num">5</button>
+                    <button class="num">6</button>
+                    <button class="operator">-</button>
+                </div>
+                <div id="row">
+                    <div>
+                        <div>
+                            <button class="num">1</button>
+                            <button class="num">2</button>
+                            <button class="num">3</button>
+                        </div>
+                        <div>
+                            <button class="num">0</button>           
+                            <button class="decimal">.</button>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="operator">+</button>
+                    </div>
+                </div>    
+            </div>
+        </div>                        
     </body>
 </html>
