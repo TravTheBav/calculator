@@ -4,14 +4,11 @@
 
 /*
 credit for the digital font 
-author: Sizenko Alexander
-Style-7
-http://www.styleseven.com
-Created: October 7 2008
+[ codeman38 | cody@zone38.net | http://www.zone38.net/ ]
 */
 @font-face {
     font-family: digital;
-    src: url(fonts/digital-7.ttf);
+    src: url(fonts/retganon.ttf);
 }
 
 html, body {
@@ -37,13 +34,16 @@ body {
 
 #display {
     flex: 1;
-    background-color: gainsboro;
+    background-color: #2a2a29;
     border-style: solid;
     margin-top: 10px;
     font-family: digital;
-    font-size: xx-large;
+    font-size: xxx-large;
     font-weight: 500;
+    color: #0cc10c;
+    border-color: #cf6422b8;
     padding: 8px;
+    overflow-wrap: break-word;
 }
 
 #buttons {

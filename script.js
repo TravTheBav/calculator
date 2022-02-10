@@ -50,9 +50,14 @@ function noError() {
     return true;
 }
 
+// returns length of the displayed number
+function displayNumLength() {
+    return display.textContent.length;
+}
+
 // helper functions for the button and keyboard event listeners
 function numPressed(num) {
-    if (noError()) {
+    if (noError() && displayNumLength() < 10) {
         display.textContent += num;
     }
 }
