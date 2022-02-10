@@ -39,7 +39,7 @@ function operate(operator, num1, num2) {
     if (val == "ERROR: DIVIDE BY 0") {
         return val;
     }
-    return val.toFixed(4);
+    return val.toFixed(8);
 }
 
 // returns a bool to determine whether or not an error is displayed
