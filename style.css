@@ -30,6 +30,9 @@ body {
     flex-direction: column;
     padding: 40px;
     background-color: #3c3940;
+    border: outset;
+    border-width: 10px;
+    border-color: #4f4d51
 }
 
 #display {
@@ -47,10 +50,10 @@ body {
 }
 
 #buttons {
-    flex: 5;
+    flex: 3;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 #row {
