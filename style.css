@@ -18,9 +18,16 @@ html, body {
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     background-color: beige;
+}
+
+p {
+    font-family: digital;
+    font-size: x-large;
+    text-align: center;
 }
 
 #calculator {
